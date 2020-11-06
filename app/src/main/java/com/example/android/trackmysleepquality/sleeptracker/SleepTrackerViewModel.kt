@@ -32,7 +32,8 @@ import androidx.lifecycle.viewModelScope
  */
 class SleepTrackerViewModel(
         val database: SleepDatabaseDao,
-        application: Application) : AndroidViewModel(application) {
+        application: Application) : AndroidViewModel(application
+) {
 
     /**
      * viewModelJob allows us to cancel all coroutines started by this ViewModel.

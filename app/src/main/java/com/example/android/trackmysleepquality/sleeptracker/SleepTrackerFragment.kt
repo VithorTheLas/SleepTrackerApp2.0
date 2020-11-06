@@ -57,11 +57,24 @@ class SleepTrackerFragment : Fragment() {
 
         val sleepTrackerViewModel =
                 ViewModelProvider(
-                        this, viewModelFactory).get(SleepTrackerViewModel::class.java)
+                        this, viewModelFactory).get(SleepTrackerViewModel::class.java
+                )
+
+        val adapter = SleepNightAdapter()
+
+        //binding adapter
+        binding.sleepList.adapter = adapter
 
         binding.sleepTrackerViewModel = sleepTrackerViewModel
 
         binding.lifecycleOwner = this
+
+        // observer adapter
+        sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
+        })
 
         // Add an Observer on the state variable for showing a Snackbar message
         // when the CLEAR button is pressed.
